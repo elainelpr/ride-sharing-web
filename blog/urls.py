@@ -1,0 +1,35 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('home', views.home, name='blog-home'),
+    #配置users信息操作路由
+    # path('users', views.indexUsers, name='indexusers'),
+    # path('users/add', views.addUsers, name='addusers'),
+    # path('users/insert', views.insertUsers, name='insertusers'),
+    # path('users/del/<int:uid>', views.delUsers, name='delusers'),
+    # path('users/home', views.home, name='bloghome'),
+    path('', views.signupUsers, name='signupusers'),
+    path('login', views.loginUsers, name='loginusers'),
+    path('add_RideRequest', views.addRideRequest, name='addriderequest'),
+    path('insert_RideRequest', views.insertRideRequest, name='insertriderequest'),
+    path('ride_Info', views.rideInfo, name="rideinfo"),
+    path('drive_Home', views.driveHome, name='drivehome'),
+    path('ride_ViewEdit', views.rideViewEdit, name="rideviewedit"),
+    path('ride_OpenEdit', views.rideOpenEdit, name="rideopenedit"),
+    path('ride_OpenDel', views.rideOpenDel, name="rideopendel"),
+    path('ride_OpenUpdate', views.rideOpenUpdate, name='rideopenupdate'),
+    #path('ride_Confirmed', views.rideConfirmed, name="rideconfirmed"),
+    path('drive_Profile', views.driveProfile, name="driveprofile"),
+    path('drive_Register', views.driveRegister, name="driveregister"),
+    path('drive_Update', views.driveUpdate, name='driveupdate'),
+    path('drive_Edit', views.driveEdit, name='driveedit'),
+    path('drive_EditInfo', views.driveEditInfo, name='driveeditinfo'),
+    path('drive_Search', views.driveSearch, name='drivesearch'),
+    path('drive_Accept', views.driveAccept, name='driveaccept'),
+    path('drive_AcceptRide', views.driveAcceptRide, name="driveacceptride"),
+    path('drive_View', views.driveView, name="driveview"),
+    path('drive_Complete', views.driveComplete, name="drivecomplete"),
+    path('share_Search', views.shareSearch, name='sharesearch'),
+    path('share_Home', views.shareHome, name='sharehome'),
+]

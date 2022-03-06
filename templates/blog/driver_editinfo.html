@@ -1,0 +1,39 @@
+{% extends "blog/driver_base.html" %}
+
+{% block contentPage %} 
+  <center>
+    <h3>Driver Info Update</h3>
+  </center>
+
+  <form action="{% url 'driveedit' %}" method="post">
+      <!--form提交的信息转到insertusers的网址-->
+      {% csrf_token %}
+      <table width="600" border="0" class="table">
+          <tr>
+            <td><h5>Driver name：</h5></td> <!--姓名提交的内容存放到变量name中-->
+            <td><input type="text" name="driver_name" value="{{driver_ob.driver_name}}"/></td>
+          </tr>
+          <tr>
+            <td><h5>Vehicle type：</h5></td>
+            <td><input type="text" name="vehicle_type" value="{{driver_ob.vehicle_type}}"/></td>
+          </tr>
+          <tr>
+            <td><h5> License plate number：</h5></td>
+            <td><input type="text" name="license_num" value="{{driver_ob.license_num}}"></td>
+          </tr>
+          <tr>
+            <td><h5> Maximum number of passengers：</h5></td>
+            <td><input type="number" name="max_numPass" value="{{driver_ob.max_numPass}}"></td>
+          </tr>
+        
+        <input type="hidden" name="uname" value="{{driver_ob.username}}">
+        
+        <tr>
+            <td colspan="2" align="center">
+              <input type="submit" value="Update"/>
+              <!-- <input type="reset" value="重置"/> -->
+            </td>
+        </tr>
+      </table>
+  </form>
+{% endblock contentPage %}

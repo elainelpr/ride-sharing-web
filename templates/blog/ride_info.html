@@ -1,0 +1,46 @@
+{% extends 'blog/owner_base.html' %}
+
+{% block contentPage %} 
+    <center>
+        <h3>Your order is successful!</h3>
+    </center>
+
+    <table width="600" border="0" class="table">
+        <tr>
+          <td colspan="2" align="center">
+            <div class="form-group">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a href="{% url 'addriderequest' %}" style='color:rgb(55, 172, 55)'>New request</a></button>
+             </div>
+          </td>
+        </tr>
+        <tr>
+            <td>
+                <center>
+                    <div class="form-group">
+                        <form action="{% url 'rideviewedit' %}" method="post">
+                            {% csrf_token %}
+                            <div>
+                                <select name="uid">
+                                    {% for u in userslist %}
+                                        <option value="{{u.id}}">{{u.addDate}} / {{u.addTime}} |
+                                            status:
+                                            {% if u.status == 1 %}
+                                                <h3>confirmed</h3>
+                                            {% elif u.status == 2 %}
+                                                <h3>completed</h3>
+                                            {% else %}
+                                                <h3>open</h3>
+                                            {% endif %}     
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <br/>
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">View/Edit</button>
+                        </form>
+                    </div>
+                </center>   
+            </td>
+        </tr>
+    </table>
+{% endblock contentPage %}

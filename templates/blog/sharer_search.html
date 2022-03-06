@@ -1,0 +1,44 @@
+{% extends "blog/sharer_base.html" %}
+
+{% block contentPage %} 
+  <center>
+    <h3>Search Open Ride</h3>
+  </center>
+
+  <form action="" method="post">
+      <!--form提交的信息转到insertusers的网址-->
+      {% csrf_token %}
+      <table width="600" border="0" class="table">
+          <tr>
+            <td><h5>Destination：</h5></td>
+            <td><input type="text" name="dest"/></td>
+          </tr>
+          <tr>
+          <td><h5>Number of Passengers：</h5></td>
+          <td><input type="number" name="numPass"></td>
+        </tr>
+          <tr>
+          <div class="form-group">
+            <center>
+              <div class="col-md-9">
+                <br/>
+                <h5>Start Date/Time </h5> 
+                <input type="date" class="form-control" id="date" name="start_Date">
+                <input type="time" class="form-control" id="time" name="start_Time">
+                <br/>
+                <h5>End Date/Time </h5>
+                <input type="date" class="form-control" id="date" name="end_Date">
+                <input type="time" class="form-control" id="time" name="end_Time">
+              </div>
+            </center>        
+          </div>
+        </tr>
+          <tr>
+            <td colspan="2" align="center">
+              <input type="submit" value="Search"/>
+              <!-- <input type="reset" value="重置"/> -->
+            </td>
+          </tr>
+      </table>
+  </form>
+{% endblock contentPage %}

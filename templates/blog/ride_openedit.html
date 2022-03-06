@@ -1,0 +1,66 @@
+{% extends "blog/owner_base.html" %}
+
+{% block contentPage %} 
+  {% if messages %}
+    {% for msg in messages %}
+        <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>{{ msg.message }}</strong>
+        </div>
+    {% endfor %}
+  {% endif %}
+  <center>
+    <h3>Ride Request</h3>
+  </center>
+
+  <form action="{% url 'rideopenupdate' %}" method="post">
+      <!--form提交的信息转到insertusers的网址-->
+      {% csrf_token %}
+      <table width="600" border="0" class="table">
+          <tr>
+            <td><h5>PickUp location：</h5></td> <!--姓名提交的内容存放到变量name中-->
+            <td><input type="text" name="start" value="{{ride_ob.start}}"/></td>
+          </tr>
+          <tr>
+            <td><h5>Destination：</h5></td>
+            <td><input type="text" name="dest" value="{{ride_ob.dest}}"/></td>
+          </tr>
+          <tr>
+          <td><h5>Number of Passengers：</h5></td>
+          <td><input type="number" name="numPass" value="{{ride_ob.numPass}}"></td>
+        </tr>
+          <tr>
+          <div class="form-group">
+            <center>
+            <label for="date" class="col-md-3 control-label"><h5>Date</h5></label>
+              <div class="col-md-9">
+                <input type="date" class="form-control" id="date" name="addDate" value="{{ride_ob.printDate}}")>
+                <input type="time" class="form-control" id="time" name="addTime" value="{{ride_ob.printTime}}">
+                  <!-- <input type="date" class="form-control" id="date" value="{{RideRequest.addtime}}">
+                  <input type="time" class="form-control" id="date" value="{{RideRequest.addtime}}"> -->
+              </div>
+            </center>
+          </div>
+        </tr>
+
+        <tr>
+          <center>
+          <input name="isShare" value="f" type="radio" checked="checked"/> <h8>Not share</h8>       <!--（checked表示默认已选中） -->
+          <input name="isShare" value="t" type="radio" /><h8>Share</h8>
+          <!-- <input type="checkbox" name="isShare" checked="" value="true" /> Accept share
+          <input type="checkbox" name="isShare" checked="" value="false"/> Decline share -->
+          <!-- <input type="checkbox" value="{{RideRequest.isShare}}" checked="checked" /> Accept share -->
+          </center>
+        </tr>
+        
+        <input type="hidden" name="uid" value="{{ride_ob.id}}">
+        
+        <tr>
+            <td colspan="2" align="center">
+              <input type="submit" value="Update"/>
+              <!-- <input type="reset" value="重置"/> -->
+            </td>
+        </tr>
+      </table>
+  </form>
+{% endblock contentPage %}

@@ -1,0 +1,49 @@
+{% extends 'blog/owner_base.html' %}
+<link type="text/css" rel="stylesheet" href="../libs/bootstrap.css">
+
+
+{% block contentPage %}
+    {% if messages %}
+        {% for msg in messages %}
+            <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ msg.message }}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <h3>Open Ride Information</h3>
+    <table table width="400" border="0" class="table table-bordered">
+        <tr>
+            <th align="center">PickUp location</th>
+            <th align="center">Destination</th>
+            <th align="center">Number of Passengers</th>
+            <th align="center">Date</th>
+            <th align="center">Time</th>
+            <th align="center">Share or not</th>
+            <th align="center">Operation</th>
+        </tr>
+        <tr>
+            <td align="center">{{ ob_ride.start }}</td>
+            <td align="center">{{ ob_ride.dest }}</td>
+            <td align="center">{{ ob_ride.numPass }}</td>
+            <td align="center">{{ ob_ride.addDate }}</td>
+            <td align="center">{{ ob_ride.addTime }}</td>
+            <td align="center">{{ ob_ride.isShare }}</td>
+            <td>
+                <form method="post" action="{% url 'rideopenedit' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="uid" value="{{ob_ride.id}}">
+                    <input type="submit" value="Edit">
+                </form>
+                <br/>
+                <form method="post" action="{% url 'rideopendel' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="uid" value="{{ob_ride.id}}">
+                    <input type="submit" value="Cancel">
+                </form>
+            </td>
+        </tr>
+    </table>
+    
+    
+{% endblock contentPage %}

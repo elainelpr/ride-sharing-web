@@ -1,0 +1,34 @@
+{% extends 'blog/driver_base.html' %}
+<link type="text/css" rel="stylesheet" href="../libs/bootstrap.css">
+
+{% block contentPage %}
+    <h3>Confirmed Ride Information</h3>
+    <table table width="400" border="0" class="table table-bordered">
+        <tr>
+            <th align="center">PickUp location</th>
+            <th align="center">Destination</th>
+            <th align="center">Number of Passengers</th>
+            <th align="center">Date</th>
+            <th align="center">Time</th>
+            <th align="center">Share or not</th>
+            <th align="center">Operation</th>
+        </tr>
+        <tr>
+            <td align="center">{{ order_ob.start }}</td>
+            <td align="center">{{ order_ob.dest }}</td>
+            <td align="center">{{ order_ob.numPass }}</td>
+            <td align="center">{{ order_ob.addDate }}</td>
+            <td align="center">{{ order_ob.addTime }}</td>
+            <td align="center">{{ order_ob.isShare }}</td>
+            <td>
+                <form method="post" action="{% url 'drivecomplete' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="oid" value="{{order_ob.id}}">
+                    <input type="submit" value="Order complete">
+                </form>
+            </td>
+        </tr>
+    </table>
+    
+    
+{% endblock contentPage %}

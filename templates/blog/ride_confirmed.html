@@ -1,0 +1,43 @@
+{% extends 'blog/owner_base.html' %}
+<link type="text/css" rel="stylesheet" href="../libs/bootstrap.css">
+
+
+{% block contentPage %}
+    {% if messages %}
+        {% for msg in messages %}
+            <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ msg.message }}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <h3>Confirmed Ride Information</h3>
+    <table table width="400" border="0" class="table table-bordered">
+        <tr>
+            <th align="center">PickUp location</th>
+            <th align="center">Destination</th>
+            <th align="center">Number of Passengers</th>
+            <th align="center">Date</th>
+            <th align="center">Time</th>
+            <th align="center">Share or not</th>
+            <th align="center">Driver username</th>
+            <th align="center">Vehicle type</th>
+            <th align="center">License plate number</th>
+            <th align="center">Maximum number of passengers</th>
+        </tr>
+        <tr>
+            <td align="center">{{ ob_ride.start }}</td>
+            <td align="center">{{ ob_ride.dest }}</td>
+            <td align="center">{{ ob_ride.numPass }}</td>
+            <td align="center">{{ ob_ride.addDate }}</td>
+            <td align="center">{{ ob_ride.addTime }}</td>
+            <td align="center">{{ ob_ride.isShare }}</td>
+            <td align="center">{{ ob_driver.driver_name }}</td>
+            <td align="center">{{ ob_driver.vehicle_type }}</td>
+            <td align="center">{{ ob_driver.license_num }}</td>
+            <td align="center">{{ ob_driver.max_numPass }}</td>
+        </tr>
+    </table>
+    
+    
+{% endblock contentPage %}
